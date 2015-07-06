@@ -56,15 +56,15 @@ module Sunspot
       Resque.enqueue SupplejackApi::IndexWorker, :remove_all, clazz.to_s
     end
 
-    def commit(soft_commit = false)
+    def commit
       Resque.enqueue(SupplejackApi::IndexWorker, :commit)
     end
 
-    def commit_if_dirty(soft_commit = false)
+    def commit_if_dirty
       # no-op
     end
 
-    def commit_if_delete_dirty(soft_commit = false)
+    def commit_if_delete_dirty
       # no-op
     end
   end
