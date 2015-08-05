@@ -18,6 +18,8 @@ module SupplejackApi
       
       Rails.logger.info "LOG VIEW DASH: in index"
 
+      Rails.logger.info "LOG VIEW DASH: @search #{@search}"
+
       begin
         if @search.valid?
           respond_with @search, serializer: RecordSearchSerializer

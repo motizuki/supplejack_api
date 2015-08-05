@@ -25,6 +25,8 @@ module SupplejackApi
 
         facets.merge!({facet.name => rows})
       end
+
+      Rails.logger.info "LOG VIEW DASH: json facets #{facets}"
       facets
     end
 
@@ -36,18 +38,23 @@ module SupplejackApi
         end
         facets << {name: facet.name.to_s, values: values}
       end
+
+      Rails.logger.info "LOG VIEW DASH: xml facets #{facets}"
       facets
     end
 
     def to_json(options={})
       rendered_json = as_json(options).to_json
       rendered_json = "#{object.jsonp}(#{rendered_json})" if object.jsonp
+      Rails.logger.info "LOG VIEW DASH: rendered_json #{rendered_json}"
       rendered_json
     end
 
     def as_json(options={})
       hash = { search: serializable_hash }
       hash[:search][:facets] = json_facets
+      
+      Rails.logger.info "LOG VIEW DASH: as_json #{as_json}"
       hash
     end
 
