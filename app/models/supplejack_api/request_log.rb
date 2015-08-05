@@ -10,7 +10,7 @@ module SupplejackApi
     include Mongoid::Document
     include Mongoid::Timestamps
   
-    store_in collection: 'request_activities'
+    store_in collection: 'request_log'
     
     field :request_type,       type: string
     field :results,         type: string
