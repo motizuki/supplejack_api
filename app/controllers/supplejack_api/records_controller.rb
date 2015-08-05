@@ -16,6 +16,8 @@ module SupplejackApi
       @search.request_url = request.original_url
       @search.scope = current_user
       
+      Rails.logger.info "LOG VIEW DASH: in index"
+
       begin
         if @search.valid?
           respond_with @search, serializer: RecordSearchSerializer

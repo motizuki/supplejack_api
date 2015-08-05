@@ -245,6 +245,8 @@ module SupplejackApi::Concerns::Searchable
     end
   
     def jsonp
+      Rails.logger.info "LOG VIEW DASH: in jsonp"
+      Rails.logger.info "LOG VIEW DASH: #{@options[:jsonp]}"      
       @options[:jsonp].present? ? @options[:jsonp] : nil
     end
 
@@ -318,9 +320,11 @@ module SupplejackApi::Concerns::Searchable
     end
 
     def execute_solr_search_and_handle_errors(search)
+      Rails.logger.info "LOG VIEW DASH: in execute_solr_search_and_handle_errors"
       begin
         self.errors ||= []
         sunspot = search.execute
+        Rails.logger.info "LOG VIEW DASH: sunspot #{sunspot}"
       rescue RSolr::Error::Http => e
         self.errors << self.solr_error_message(e)
         Rails.logger.info e.message
