@@ -12,8 +12,8 @@ module SupplejackApi
   
     store_in collection: 'request_log'
     
-    field :request_type,       type: string
-    field :results,         type: string
+    field :request_type,    type: String
+    field :results,         type: String
   
     index created_at: 1
   end
